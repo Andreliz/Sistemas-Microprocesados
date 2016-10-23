@@ -1,0 +1,87 @@
+/*      3 JUEGOS DE 14 LUCES EMPLEANDO CICLOS
+  
+ * Este programa consta de 3 secuencias de juegos de luces con 14 leds.
+ 
+ Secuencia 1: Se prenden empezando desde la parte central los leds rojos y verdes hacia la parte externa , luego desde la parte externa hacia la interna en la misma secuencia.
+ * Secuencia 2: Empiezan simultaneamente desde abajo hacia arriba los leds rojos y verdes y de regreso en la misma secuencia ,es decir hacia abajo.
+ * Secuencia 3: Se encienden desde la parte central de los led verdes hacia abajo hasta la parte central  de los leds rojos ,luego sube y se aumentan dos leds mas y baja luego desde el priencipio hasta el centro del los led rojos
+ * 
+ * NOMBRE: Andrea Cuásquer
+ * FECHA DE ENTREGA: 23/10/2016
+ */
+
+
+
+
+int i=0; //creamos e inicializamos el contador i
+int j=0; //creamos e inicializamos el contador j
+int leds[14]={0,1,2,3,4,5,6,7,8,9,10,11,12,13}; //creamos un vector de 14 posiciones 
+void setup() {
+  
+  pinMode (0, OUTPUT);//declaramos al pin como salida
+  pinMode (1, OUTPUT);//declaramos al pin como salida
+  pinMode (2, OUTPUT);//declaramos al pin como salida
+  pinMode (3, OUTPUT);//declaramos al pin como salida
+  pinMode (4, OUTPUT);//declaramos al pin como salida
+  pinMode (5, OUTPUT);//declaramos al pin como salida
+  pinMode (6, OUTPUT);//declaramos al pin como salida
+  pinMode (7, OUTPUT);//declaramos al pin como salida
+  pinMode (8, OUTPUT);//declaramos al pin como salida
+  pinMode (9, OUTPUT);//declaramos al pin como salida
+  pinMode (10, OUTPUT);//declaramos al pin como salida
+  pinMode (11, OUTPUT);//declaramos al pin como salida
+  pinMode (12, OUTPUT);//declaramos al pin como salida
+  pinMode (13, OUTPUT);//declaramos al pin como salida
+
+}
+void secuencia1(){//primer método
+  for(i=8,j=7;j<=13,i>=0;i--,j++)
+  
+  {//este ciclo hace que se enciendan los leds
+  digitalWrite(leds[i],HIGH), digitalWrite(leds[j],HIGH);
+  delay(100);  
+  }
+  for(i=13,j=0;j<7,i>=8;i--,j++)
+ 
+  {//este ciclo hace que los leds se apaguen .
+  digitalWrite(leds[i],LOW),digitalWrite(leds[j],LOW);  
+  delay(200);  
+  }
+  }
+void secuencia2(){
+  
+   for(i=8,j=0;j<7,i<=13;i++,j++)//este ciclo noa permite empear desde la parte de de arriba hacia abajo
+   {
+    digitalWrite(leds[i],HIGH),digitalWrite(leds[j],HIGH);
+  delay(100);}
+  for(i=13,j=8;i>=0,j>=0;i--,j--)// este ciclo hhace lo contario permitiendo que se apague de abajo hacia arriba
+  {
+  digitalWrite(leds[i],LOW),digitalWrite(leds[j],LOW);
+  delay(100);
+  }
+   }
+  
+void secuencia3(){
+  for(i=11;i>=3;i--)
+  { //este ciclo permite que se enciendan desde la mitad hacia abajo
+  digitalWrite(leds[i],HIGH);
+  delay(100); 
+  }
+   for(j=3;j<=13;j++)//este ciclo hace que se apaguen desde abajo hacia arriba
+   {
+  digitalWrite(leds[j],HIGH);  
+  delay(100);}
+   for(j=13;j>=3;j--)
+   {
+  digitalWrite(leds[j],LOW);  
+  delay(100);}
+  }
+   
+void loop() {
+  secuencia1();// llamamos al metodo 1
+  delay(500);// permite que exista una pausa en el cambio de juego a juego
+  secuencia2();// llamamos al metodo 2
+  delay(500);
+  secuencia3();// llamamos al metodo 3
+  delay(500);
+}
