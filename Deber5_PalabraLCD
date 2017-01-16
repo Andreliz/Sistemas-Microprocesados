@@ -1,0 +1,55 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd (9, 8, 7, 6, 5, 4);
+
+
+String entrada;
+int tamano;
+int i = 0;
+int j = 1;
+void setup() {
+  // put your setup code here, to run once:
+  lcd.begin(16, 2);
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  
+  lcd.println("Escriba");
+  delay(3000);
+  lcd.clear();
+  entrada = Serial.readString();
+  tamano = entrada.length();
+  char vector[tamano + 1];
+  entrada.toCharArray(vector, tamano + 1);
+
+  for (; i < tamano; i++) {
+    j = 1 - j;
+    lcd.setCursor(i, 0);
+    lcd.print(vector[i]);
+    delay(200);
+  }
+  j = 1;
+  i=16;
+
+ for(; i<11;i++){
+ j=1-j;
+  lcd.setCursor(i,0);
+  lcd.print (vector[i]);
+  delay(200);
+  
+  }
+  j=1;
+  
+for(;i>=0;i--){
+  j=1-j;
+  lcd.setCursor(i,0);
+  lcd.print (' ');
+  delay(200);
+  }
+i=0;  
+  
+}
+
+
