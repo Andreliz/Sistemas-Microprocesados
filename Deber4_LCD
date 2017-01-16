@@ -1,0 +1,135 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd (8, 9, 10, 11, 12, 13);
+
+char nombre[11]={'U','N','I','V','E','R','S','I','D','A','D'};
+
+int i=0;
+int j=0;
+String datos;
+
+
+void setup() {
+lcd.begin(16,2);
+
+Serial.begin(9600);
+
+lcd.print("INGRESE");
+  lcd.setCursor(0,1);
+  lcd.print("A,B o C");
+  delay (1000);
+   lcd.clear();
+   delay (2000);
+   
+}
+
+void loop() {
+ 
+delay (600);
+juegos();
+
+
+}
+
+void juegos(){
+  
+if (Serial.available()>0)
+{
+
+  
+ if(Serial.read()=='A')
+  {
+ for(; i<11;i++){
+ j=1-j;
+  lcd.setCursor(i,j);
+  lcd.print (nombre[i]);
+  delay(200);
+  
+  }
+  j=1;
+  
+for(;i>0;i--){
+  j=1-j;
+  lcd.setCursor(i,j);
+  lcd.print (' ');
+  delay(200);
+  }
+i=0;  
+
+}
+
+
+  else
+  {
+    
+  if(Serial.read()=='B') 
+  {
+ for(; i<11;i++){
+ j=1-j;
+  lcd.setCursor(i,j);
+  lcd.print (nombre[i]);
+  delay(200);
+  }
+  j=1;
+  delay(200);
+  lcd.clear();
+  
+}
+  
+  
+  else
+  {
+    
+ if(Serial.read()=='C') 
+  {
+ for(; i<11;i++){
+  lcd.setCursor(i,0);
+  lcd.print (nombre[i]);
+  delay(200);
+  }
+  lcd.clear();
+
+  
+}
+
+
+
+
+ else
+  {
+    
+    lcd.print("INGRESE");
+  lcd.setCursor(0,1);
+  lcd.print("A,B o C");
+  delay (2000);
+   lcd.clear();
+  
+   delay (7000);
+   
+  if (Serial.available()>0)
+{
+  juegos();
+  
+  }
+
+  
+  }
+  }}}  }
+  
+
+  
+  
+ 
+       
+          
+              
+                 
+                    
+
+
+
+
+
+
+
+
+
